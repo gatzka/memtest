@@ -27,7 +27,7 @@
  */
 
 /*
- * The credits for this source code mostly go to Micheal Barr. This
+ * The credits for this source code mostly go to Michael Barr. This
  * source code is heavily based on:
  * https://barrgroup.com/embedded-systems/how-to/memory-test-suite-c
  */

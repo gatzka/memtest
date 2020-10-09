@@ -27,17 +27,15 @@
  */
 
 /*
- * The credits for this source code mostly go to Micheal Barr. This
+ * The credits for this source code mostly go to Michael Barr. This
  * source code is heavily based on:
  * https://barrgroup.com/embedded-systems/how-to/memory-test-suite-c
  */
 
+#include <limits.h>
 #include <stddef.h>
 
 #include "memtest.h"
-
-static const datum_t MEM_PATTERN      = 0xAAAAAAAAU;
-static const datum_t MEM_ANTI_PATTERN = 0x55555555U;
 
 datum_t memtest_databus(datum_t *address)
 {
@@ -56,14 +54,28 @@ datum_t memtest_databus(datum_t *address)
 
 datum_t *memtest_addressbus(datum_t *base_address, size_t nbytes)
 {
+	static const uint8_t PATTERN_BYTE = UINT8_C(0xAA);
+	static const uint8_t ANTI_PATTERN_BYTE = UINT8_C(0x55);
+
+	datum_t mem_pattern = 0;
+	datum_t mem_anti_pattern = 0;
+
+	for (unsigned int i = 0; i < sizeof(mem_pattern); i++) {
+		mem_pattern = (mem_pattern << (unsigned int)CHAR_BIT) | PATTERN_BYTE;
+	}
+
+	for (unsigned int i = 0; i < sizeof(mem_anti_pattern); i++) {
+		mem_anti_pattern = (mem_anti_pattern << (unsigned int)CHAR_BIT) | ANTI_PATTERN_BYTE;
+	}
+
 	size_t address_mask = (nbytes / sizeof(datum_t) - 1);
 	size_t offset       = 0;
 	size_t test_offset  = 0;
 
 	volatile datum_t *base_addr = base_address;
 
-	datum_t pattern     = MEM_PATTERN;
-	datum_t antipattern = MEM_ANTI_PATTERN;
+	datum_t pattern     = mem_pattern;
+	datum_t antipattern = mem_anti_pattern;
 
 	for (offset = 1; (offset & address_mask) != 0; offset <<= 1U) {
 		base_addr[offset] = pattern;
