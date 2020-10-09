@@ -4,8 +4,8 @@ memtest is a small memory test library made for embedded systems. It
 provides functions to test the data bus, the address bus as well as the
 whole memory device.
 
-The source code is heavily based on Michael Barrs code published here:
-https://barrgroup.com/embedded-systems/how-to/memory-test-suite-c
+The source code is heavily based on Michael Barrs code published
+[here](https://barrgroup.com/embedded-systems/how-to/memory-test-suite-c).
 So most of the credits go there.
 
 ## License
