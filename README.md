@@ -16,6 +16,6 @@ limitations (MIT).
 memtest lets you choose if you want to build a static or dynamic library.
 The default is static. If you want a shared library, execute:
 ```
-cmake -DBUILD_SHARED_LIBS=ON <path-to-cio-project>
+cmake -DBUILD_SHARED_LIBS=ON <path-to-memtest-project>
 ```
 
