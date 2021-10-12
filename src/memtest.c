@@ -81,7 +81,7 @@ datum_t *memtest_addressbus(datum_t *base_address, size_t nbytes)
 		base_addr[offset] = pattern;
 	}
 
-	/* 
+	/*
 	 * Check for address bits stuck high.
 	 */
 	test_offset = 0;
