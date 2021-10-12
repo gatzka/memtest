@@ -14,7 +14,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: cmake build
-      uses: gatzka/cmake-build-action@v2.0.1
+      uses: gatzka/cmake-build-action@master
       with:
         cmake_toolchain_file: ./toolchains/x86-linux-gcc-11.cmake
         cmake_build_type: Debug
