@@ -3,9 +3,25 @@ name: CI build
 on: [push, pull_request]
 
 jobs:
+  clang-format-style-check:
+    name: clang-format-13 style check
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: cmake build
+      uses: gatzka/cmake-build-action@v2.1.0
+      with:
+        cmake_build_target: format-check-all
+        cmake_toolchain_file: ./toolchains/x86-linux-gcc-11.cmake
+
   gcc-11-x86-linux-debug:
     name: gcc-11 x86 linux debug
     runs-on: ubuntu-20.04
+    needs: [clang-format-style-check]
 
     steps:
     - name: Checkout
@@ -21,6 +37,7 @@ jobs:
   gcc-11-x86-linux-release:
     name: gcc-11 x86 linux release
     runs-on: ubuntu-20.04
+    needs: [clang-format-style-check]
 
     steps:
     - name: Checkout
@@ -36,6 +53,7 @@ jobs:
   clang-13-x86-linux-debug:
     name: clang-13 x86 linux debug
     runs-on: ubuntu-20.04
+    needs: [clang-format-style-check]
 
     steps:
     - name: Checkout
@@ -51,6 +69,7 @@ jobs:
   clang-13-x86-linux-release:
     name: clang-13 x86 linux release
     runs-on: ubuntu-20.04
+    needs: [clang-format-style-check]
 
     steps:
     - name: Checkout
