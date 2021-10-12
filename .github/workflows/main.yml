@@ -4,8 +4,8 @@ on: [push, pull_request]
 
 jobs:
 
-  gcc-11
-    name: gcc-11 Debug
+  gcc-11-x86-linux:
+    name: gcc-11 x86 linux debug
     runs-on: ubuntu-20.04
 
     steps:
