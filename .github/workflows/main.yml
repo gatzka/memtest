@@ -32,3 +32,34 @@ jobs:
       with:
         cmake_toolchain_file: ./toolchains/x86-linux-gcc-11.cmake
         cmake_build_type: Release
+
+  clang-13-x86-linux-debug:
+    name: clang-13 x86 linux debug
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: cmake build
+      uses: gatzka/cmake-build-action@v2.1.0
+      with:
+        cmake_toolchain_file: ./toolchains/x86-linux-clang-13.cmake
+        cmake_build_type: Debug
+
+  clang-13-x86-linux-release:
+    name: clang-13 x86 linux release
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: cmake build
+      uses: gatzka/cmake-build-action@v2.1.0
+      with:
+        cmake_toolchain_file: ./toolchains/x86-linux-clang-13.cmake
+        cmake_build_type: Release
+
