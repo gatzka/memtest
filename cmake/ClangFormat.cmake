@@ -3,7 +3,7 @@
 # Copyright (C) 2021 Nexplore Technology GmbH
 
 include(LocateProgram)
-LocateProgram(clang-format-12 CLANG_FORMAT_PATH)
+LocateProgram(clang-format-13 CLANG_FORMAT_PATH)
 
 if (NOT TARGET format-all)
     add_custom_target(format-all)
