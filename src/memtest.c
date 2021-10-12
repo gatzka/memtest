@@ -69,12 +69,12 @@ datum_t *memtest_addressbus(datum_t *base_address, size_t nbytes)
 	}
 
 	size_t address_mask = (nbytes / sizeof(datum_t) - 1);
-	size_t offset       = 0;
-	size_t test_offset  = 0;
+	size_t offset = 0;
+	size_t test_offset = 0;
 
 	volatile datum_t *base_addr = base_address;
 
-	datum_t pattern     = mem_pattern;
+	datum_t pattern = mem_pattern;
 	datum_t antipattern = mem_anti_pattern;
 
 	for (offset = 1; (offset & address_mask) != 0; offset <<= 1U) {
@@ -84,7 +84,7 @@ datum_t *memtest_addressbus(datum_t *base_address, size_t nbytes)
 	/* 
 	 * Check for address bits stuck high.
 	 */
-	test_offset            = 0;
+	test_offset = 0;
 	base_addr[test_offset] = antipattern;
 
 	for (offset = 1; (offset & address_mask) != 0; offset <<= 1U) {
@@ -119,11 +119,11 @@ datum_t *memtest_addressbus(datum_t *base_address, size_t nbytes)
 
 datum_t *memtest_device(datum_t *base_address, size_t nbytes)
 {
-	volatile size_t            offset    = 0;
-	volatile size_t            nwords    = nbytes / sizeof(datum_t);
+	volatile size_t offset = 0;
+	volatile size_t nwords = nbytes / sizeof(datum_t);
 	volatile datum_t *base_addr = base_address;
 
-	volatile datum_t pattern     = 0;
+	volatile datum_t pattern = 0;
 	volatile datum_t antipattern = 0;
 
 	/*
@@ -141,7 +141,7 @@ datum_t *memtest_device(datum_t *base_address, size_t nbytes)
 			return &base_address[offset];
 		}
 
-		antipattern       = ~pattern;
+		antipattern = ~pattern;
 		base_addr[offset] = antipattern;
 	}
 

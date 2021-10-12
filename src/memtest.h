@@ -43,9 +43,8 @@
  */
 typedef uint32_t datum_t;
 
-datum_t  memtest_databus(datum_t *address);
+datum_t memtest_databus(datum_t *address);
 datum_t *memtest_addressbus(datum_t *base_address, size_t nbytes);
 datum_t *memtest_device(datum_t *base_address, size_t nbytes);
 
 #endif
-
